@@ -11,7 +11,7 @@ describe('Routes', function (){
     request.get('/')
       .expect(200)
       .expect('routed')
-      .expect('content-type', 'text/plain')
+      .expect('content-type', 'text/plain; charset=utf-8')
       .expect(res => {
         expect(res.files).to.be.undefined;
       })
@@ -22,7 +22,7 @@ describe('Routes', function (){
     request.get('/404')
       .expect(404)
       .expect('Not Found')
-      .expect('content-type', 'text/plain')
+      .expect('content-type', 'text/plain; charset=utf-8')
       .end(done);
   });
 
@@ -30,7 +30,7 @@ describe('Routes', function (){
     request.post('/404')
       .expect(404)
       .expect('Not Found')
-      .expect('content-type', 'text/plain')
+      .expect('content-type', 'text/plain; charset=utf-8')
       .end(done);
   });
 
@@ -38,7 +38,7 @@ describe('Routes', function (){
     request.put('/404')
       .expect(404)
       .expect('Not Found')
-      .expect('content-type', 'text/plain')
+      .expect('content-type', 'text/plain; charset=utf-8')
       .end(done);
   });
 
@@ -46,7 +46,7 @@ describe('Routes', function (){
     request.delete('/404')
       .expect(404)
       .expect('Not Found')
-      .expect('content-type', 'text/plain')
+      .expect('content-type', 'text/plain; charset=utf-8')
       .end(done);
   });
 });
