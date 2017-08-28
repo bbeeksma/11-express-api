@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "cross-env DEBUG=server",
     "test": "mocha",
     "test:watch": "mocha -w",
-    "start": "node server.js",
+    "start": "npm run build node server.js",
     "lint": "eslint ."
   },
   "author": "",

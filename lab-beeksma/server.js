@@ -1,5 +1,6 @@
 'use strict';
 
+const debug = require('debug')('server');
 const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,6 @@ app.post('*', (req, res) => res.sendStatus(404));
 app.put('*', (req, res) => res.sendStatus(404));
 app.delete('*', (req, res) => res.sendStatus(404));
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));
+app.listen(PORT, () => debug(`started on port ${PORT}`));
 
 module.exports = app;
