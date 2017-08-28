@@ -52,7 +52,7 @@ describe('Routes', function (){
 });
 
 describe('Simple Resource', function (){
-  var note = null;
+  var workout = null;
 
   describe('POST /workout', function() {
     it('should return bad request if no body', function (done){
@@ -77,15 +77,15 @@ describe('Simple Resource', function (){
         .expect(res =>{
           expect(res.body.exercise).to.equal('benchpress');
           expect(res.body.id).to.not.be.empty;
-          note = res.body;
+          workout = res.body;
         })
         .end(done);
     });
   });
 
-  describe('GET /note', function (){
+  describe('GET /workout', function (){
     it('should return bad resuest if no ID sent', function (done){
-      request.get(`/note`)
+      request.get(`/workout`)
         .expect(400)
         .end(done);
     });
@@ -100,20 +100,20 @@ describe('Simple Resource', function (){
         .end(done);
     });
     */
-    it('should return a note if ID supplied', function (done){
-      request.get(`/note?id=${note.id}`)
+    it('should return a workout if ID supplied', function (done){
+      request.get(`/workout?id=${workout.id}`)
         .expect(200)
         .expect(res => {
-          expect(res.body.note).to.equal(note.note);
-          expect(res.body.id).to.equal(note.id);
+          expect(res.body).to.deep.equal(workout);
+          expect(res.body.id).to.equal(workout.id);
         })
         .end(done);
     });
   });
 
-  describe('DELETE /note', function (){
+  describe('DELETE /workout', function (){
     it('should return bad request if no ID sent', function (done){
-      request.delete(`/note`)
+      request.delete(`/workout`)
         .expect(400)
         //.expect('Bad Request : Error: expected id')
         .expect('content-type', 'text/plain')
@@ -121,7 +121,7 @@ describe('Simple Resource', function (){
     });
 
     it('should return a 204 status with nothing in body if ID supplied', function (done){
-      request.delete(`/note?id=${note.id}`)
+      request.delete(`/workout?id=${note.id}`)
         .expect(204)
         .expect(res => {
           expect(res.body).to.be.empty;
@@ -129,7 +129,7 @@ describe('Simple Resource', function (){
         .end(done);
     });
     it('should not find a note for the ID we just deleted', function (done){
-      request.get(`/note?id=${note.id}`)
+      request.get(`/workout?id=${note.id}`)
         .expect(400)
         .end(done);
     });
