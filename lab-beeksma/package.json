@@ -23,7 +23,7 @@
   "lib": "lib",
   "model": "model",
   "routes": "routes",
-  "test": "test",
+  "test": "test"
 },
   "dependencies": {
     "body-parser": "^1.17.2",
