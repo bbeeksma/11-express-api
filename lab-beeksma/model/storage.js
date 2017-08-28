@@ -41,9 +41,11 @@ function ensureDirectoryExistance(filePath){
   fs.mkdirSync(dirname);
 }
 
-exports.createItem = function(schemaName, item) {
+exports.createItem = function(schemaName, exercise, weight, set, rep) {
+  console.log(exercise);
   if (!schemaName) return Promise.reject(new Error('expected schemaName'));
-  if (!item) return Promise.reject(new Error('expected item'));
+  if (!exercise || !weight || !set || !rep) return Promise.reject(new Error('all expecise params required'));
+  let item = new Workout(exercise,weight,set,rep);
 
   const filePath = `${__dirname}/../data${schemaName}/${item.id}.json`;
   ensureDirectoryExistance(filePath);

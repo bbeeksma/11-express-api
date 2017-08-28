@@ -5,11 +5,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
+const storage = require('./model/storage');
 
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.type('text/plain').send(`Hello from port:${PORT}`);
+});
+
+app.post('/workout', (req,res) => {
+  storage.createItem('/workout',req.body.exercise,req.body.weight,req.body.rep,req.body.set)
+    .then((item) => {
+      res.json(item);
+    }).catch(res.sendStatus(500));
 });
 
 app.get('*', (req, res) => res.sendStatus(404));
