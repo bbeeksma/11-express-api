@@ -7,10 +7,10 @@ const { expect } = require('chai');
 
 
 describe('Routes', function (){
-  it('should return routed for /', function (done){
+  it('should return hello message for /', function (done){
     request.get('/')
       .expect(200)
-      .expect('routed')
+      .expect('Hello from port:3000')
       .expect('content-type', 'text/plain; charset=utf-8')
       .expect(res => {
         expect(res.files).to.be.undefined;

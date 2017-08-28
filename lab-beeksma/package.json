@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "build": "cross-env DEBUG=server",
-    "test": "mocha",
-    "test:watch": "mocha -w",
+    "test": "npm run build mocha",
+    "test:watch": "npm run build mocha -w",
     "start": "npm run build node server.js",
     "lint": "eslint ."
   },

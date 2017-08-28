@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.type('text/plain').send('routed');
+  res.type('text/plain').send(`Hello from port:${PORT}`);
 });
 
 app.get('*', (req, res) => res.sendStatus(404));
