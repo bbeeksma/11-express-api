@@ -75,7 +75,7 @@ describe('Simple Resource', function (){
         .send({exercise: 'benchpress', weight: '135', set: '5', rep: '10'})
         .expect(200)
         .expect(res =>{
-          expect(res.body.note).to.equal('this is a note');
+          expect(res.body.exercise).to.equal('benchpress');
           expect(res.body.id).to.not.be.empty;
           note = res.body;
         })

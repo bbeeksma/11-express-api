@@ -16,8 +16,11 @@ app.get('/', (req, res) => {
 app.post('/workout', (req,res) => {
   storage.createItem('/workout',req.body.exercise,req.body.weight,req.body.rep,req.body.set)
     .then((item) => {
-      res.json(item);
-    }).catch(res.sendStatus(500));
+      console.log(item);
+      res.status(200).json(item);
+    }).catch((err) => {
+      res.status(500).send(err);
+    });
 });
 
 app.get('*', (req, res) => res.sendStatus(404));

@@ -4,28 +4,34 @@ const {expect} = require('chai');
 const storage = require('../model/storage');
 
 describe('storage', function(){
-  const schemaName = '/people';
-  const itemToSave = {id:12,name:'keith'};
+  const schemaName = '/workout';
+  const itemToSave = {exercise: 'benchpress', weight: '135', set: '5', rep: '10'};
+  var savedItem = {};
   describe('create item', function(){
     it('should save item',function(done){
-      storage.createItem(schemaName,itemToSave)
+      storage.createItem(schemaName,itemToSave.exercise,itemToSave.weight,itemToSave.set,itemToSave.rep)
         .then(saveItem => {
-          expect(saveItem).to.deep.equal(itemToSave);
+          expect(saveItem.exercise).to.equal(itemToSave.exercise);
+          expect(saveItem.weight).to.equal(itemToSave.weight);
+          expect(saveItem.set).to.equal(itemToSave.set);
+          expect(saveItem.rep).to.equal(itemToSave.rep);
+          savedItem = saveItem;
           done();
-        });
+        })
+        .catch(done);
     });
   });
   describe('fetchItem',function(){
     it('should fetch item', function(done){
-      storage.fetchItem(schemaName, itemToSave.id)
+      storage.fetchItem(schemaName, savedItem.id)
         .then(fetchedItem =>{
-          expect(fetchedItem).to.deep.equal(itemToSave);
+          expect(fetchedItem).to.deep.equal(savedItem);
           done();
         })
         .catch(done);
     });
     it('should fail with bad schema', function(done){
-      storage.fetchItem('missing', itemToSave.id)
+      storage.fetchItem('missing', savedItem.id)
         .catch(err =>{
           expect(err).to.not.be.null;
           done();
