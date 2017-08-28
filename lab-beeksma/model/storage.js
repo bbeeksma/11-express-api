@@ -2,6 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const uuidv4 = require('uuid/v4');
 
 module.exports = exports = {};
 
@@ -9,6 +10,15 @@ module.exports = exports = {};
 const writeFileAsync = promisify(fs.writeFile);
 const readFileAsync = promisify(fs.readFile);
 const unlinkFileAsync = promisify(fs.unlink);
+
+function Workout(exercise, weight, set, rep){
+  this.id = uuidv4();
+  this.exercise = exercise;
+  this.weight = weight;
+  this.set = set;
+  this.rep = rep;
+}
+
 
 function promisify(fn){
   return(...args) =>{
