@@ -121,7 +121,7 @@ describe('Simple Resource', function (){
     });
 
     it('should return a 204 status with nothing in body if ID supplied', function (done){
-      request.delete(`/workout?id=${note.id}`)
+      request.delete(`/workout?id=${workout.id}`)
         .expect(204)
         .expect(res => {
           expect(res.body).to.be.empty;
@@ -129,7 +129,7 @@ describe('Simple Resource', function (){
         .end(done);
     });
     it('should not find a note for the ID we just deleted', function (done){
-      request.get(`/workout?id=${note.id}`)
+      request.get(`/workout?id=${workout.id}`)
         .expect(400)
         .end(done);
     });

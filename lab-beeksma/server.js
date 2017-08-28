@@ -33,6 +33,15 @@ app.post('/workout', (req,res) => {
     });
 });
 
+app.delete('/workout', (req,res) => {
+  storage.killItem(req.path,req.query.id)
+    .then(() => {
+      res.sendStatus(204);
+    }).catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
 app.get('*', (req, res) => res.sendStatus(404));
 app.post('*', (req, res) => res.sendStatus(404));
 app.put('*', (req, res) => res.sendStatus(404));
